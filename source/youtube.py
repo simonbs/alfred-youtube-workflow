@@ -4,50 +4,41 @@
 ##
 
 import re
-import gdata.youtube
-import gdata.youtube.service
-from to_xml import list_to_xml
 import sys
+import urllib
+import json
+from to_xml import list_to_xml
 
 #  Supported values for order by are
 #  - relevance, viewCount, published, rating
 def search(terms, max_results = 0, orderby = "relevance"):
-  yt_service = gdata.youtube.service.YouTubeService()
-  query = gdata.youtube.service.YouTubeVideoQuery()
-  query.vq = terms
-  query.orderby = orderby
-  query.racy = "include"
+  url = "https://gdata.youtube.com/feeds/api/videos?v=2&alt=jsonc&q=%s&orderby=%s" % (terms, orderby)
   if max_results > 0:
-    query.max_results = max_results
-  feed = yt_service.YouTubeQuery(query)
-  return search_results(feed)
+    url = "%s&max-results=%s" % (url, max_results)
+  conn = urllib.urlopen(url)
+  response = conn.read()
+  items = json.loads(response)["data"]["items"]
+  return search_results(items)
   
-def search_results(feed):
-  results = search_results_list(feed)
+def search_results(items):
+  results = search_results_list(items)
   print list_to_xml(results)
 
-def search_results_list(feed):
+def search_results_list(items):
   results = []
-  for entry in feed.entry:
-    result = parse_entry(entry)
+  for item in items:
+    result = parse_item(item)
     if result["uid"] is not None:
-      results.append(parse_entry(entry))
+      results.append(result)
   return results
     
-def parse_entry(entry):
-  title = entry.media.title.text
-  video_id = get_video_id(entry)
+def parse_item(item):
+  video_id = item["id"]
   return { "uid": video_id,
            "arg": video_id,
-           "title": entry.media.title.text.decode("utf-8"),
-           "subtitle": "%s" % seconds_to_string(int(entry.media.duration.seconds)),
+           "title": item["title"],
+           "subtitle": "by %s (%s)" % (item["uploader"], seconds_to_string(item["duration"])),
            "icon": "icon.png" }
-    
-def get_video_id(entry):
-  r = re.compile("http://gdata.youtube.com/feeds/videos/(\w+)</ns0:id>")
-  m = r.search(entry.id.ToString())
-  if m is not None:
-    return m.group(1)
     
 def seconds_to_string(seconds):
   hours = seconds / 3600
