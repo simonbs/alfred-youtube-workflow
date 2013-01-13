@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>dk.simonbs.Alfred.YouTube</string>
+	<key>connections</key>
+	<dict>
+		<key>986D4B18-2B25-44D9-AB82-59B3C350FA91</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Simon Støvring</string>
+	<key>description</key>
+	<string>Search for YouTube videos.</string>
+	<key>name</key>
+	<string>YouTube</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtube</string>
+				<key>script</key>
+				<string>from youtube import search
+
+# Use Googles default max results and order by relevance
+print(search("{query}", 0, "relevance"))</string>
+				<key>subtext</key>
+				<string>Search YouTube for '{query}'</string>
+				<key>title</key>
+				<string>YouTube</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>986D4B18-2B25-44D9-AB82-59B3C350FA91</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>http://www.youtube.com/watch?v={query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+		</dict>
+	</array>
+	<key>uidata</key>
+	<dict>
+		<key>2BB6EB13-3582-43AD-8330-D52EE317087D</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>986D4B18-2B25-44D9-AB82-59B3C350FA91</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://twitter.com/simonbs</string>
+</dict>
+</plist>
