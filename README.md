@@ -20,3 +20,8 @@ The first parameter is the search query. Don't change this. The second parameter
 - viewCount
 - published
 - rating
+
+About
+=====
+
+This workflow is developed by [@simonbs](http://twitter.com/simonbs) and parts of the workflow is inspired by Dan Palmers ([@danpalmer](https://twitter.com/danpalmer)) [Reddit Workflow](http://danpalmer.me/blog/articles/2013-01-12-reddit-workflow-for-alfred-20.html).
