@@ -1,8 +1,7 @@
 ##
 # By @simonbs
 # http://simonbs.dk/
-#
-# This is inspired by Dan Palmers (@danpalmer) Reddit Workflow.
+# list_to_xml() is inspired by Dan Palmers (@danpalmer) Reddit Workflow.
 # http://danpalmer.me/blog/articles/2013-01-12-reddit-workflow-for-alfred-20.html
 ##
 
