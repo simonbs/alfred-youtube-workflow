@@ -3,10 +3,21 @@
 # http://simonbs.dk/
 ##
 
+# Whether or not to show the view count in subtitle
+SUBTITLE_SHOWS_VIEW_COUNT = False
+
+# Locale
+LOCALE = "da_DK"
+
+###
+# Don't edit below :-)
+##
+
 import re
 import sys
 import urllib
 import json
+import locale
 from Feedback import Feedback
 
 # Returns the top rated videos on YouTube.
@@ -87,6 +98,12 @@ def xml_results(items):
     if video_id is not None:
       title = item["title"]
       subtitle = "by %s (%s)" % (item["uploader"], seconds_to_string(item["duration"]))
+      if SUBTITLE_SHOWS_VIEW_COUNT is True:
+        view_count = item["viewCount"]
+        view_word = "view"
+        if view_count is not 1:
+          view_word = "views"
+        subtitle = "%s [%s %s]" % (subtitle, locale.format("%d", view_count, grouping = True), view_word)
       feedback.add_item(title, subtitle, video_id)
   return feedback
 
@@ -113,6 +130,14 @@ def no_results():
   feedback = Feedback()
   feedback.add_item("No results found", "I'm really sorry that you had to experience this.", arg = "", valid = "no")
   return feedback
+  
+# Configurations
+def config():
+  if SUBTITLE_SHOWS_VIEW_COUNT == True:
+    locale.setlocale(locale.LC_ALL, LOCALE)
+
+# Make configurations
+config()
   
 # Main
 if __name__ == "__main__":
