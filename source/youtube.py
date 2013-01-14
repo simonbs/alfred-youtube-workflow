@@ -7,7 +7,7 @@ import re
 import sys
 import urllib
 import json
-from to_xml import list_to_xml
+from Feedback import Feedback
 
 # Returns the top rated videos on YouTube.
 def top_rated_videos(max_results = 0):
@@ -41,6 +41,11 @@ def most_responded_videos(max_results = 0):
 def recently_featured_videos(max_results = 0):
   return results("https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured?v=2&alt=jsonc", max_results)
 
+# Returns the videos for a given channel
+def channel_videos(username, max_results = 0, orderby = "published"):
+  url = "https://gdata.youtube.com/feeds/api/users/%s/uploads?v=2&alt=jsonc&orderby=%s" % (username, orderby)
+  return results(url, max_results)
+
 # Searches YouTube for results matching the terms and returns the results.
 # Supported values for orderby are
 # - relevance, viewCount, published, rating
@@ -52,6 +57,8 @@ def search_videos(terms, max_results = 0, orderby = "relevance"):
 def results(url, max_results):
   url = max_results_url(url, max_results)
   items = items_at_url(url)
+  if items == None or len(items) == 0:
+    return no_results()
   return xml_results(items)
   
 # Appends the maximum results to a URL.
@@ -67,33 +74,22 @@ def max_results_url(url, max_results):
 def items_at_url(url):
   conn = urllib.urlopen(url)
   response = conn.read()
-  items = json.loads(response)["data"]["items"]
-  return items
+  json_response = json.loads(response)
+  if "data" in json_response and "items" in json_response["data"]:
+    return json.loads(response)["data"]["items"]
+  return None
   
 # Parses a list results into XML for Alfred.
 def xml_results(items):
-  results = results_list(items)
-  print list_to_xml(results)
-
-# Returns a list items loaded from the Google API as parsed items.
-# A video is only included if it has a valid uid, meaning that it has a valid video ID.
-def results_list(items):
-  results = []
+  feedback = Feedback()
   for item in items:
-    result = parse_item(item)
-    if result["uid"] is not None:
-      results.append(result)
-  return results
-  
-# Parses a YouTube item into a dictionary for Alred and returns the dictionary.
-def parse_item(item):
-  video_id = item["id"]
-  return { "uid": video_id,
-           "arg": video_id,
-           "title": item["title"],
-           "subtitle": "by %s (%s)" % (item["uploader"], seconds_to_string(item["duration"])),
-           "icon": "icon.png" }
-    
+    video_id = item["id"]
+    if video_id is not None:
+      title = item["title"]
+      subtitle = "by %s (%s)" % (item["uploader"], seconds_to_string(item["duration"]))
+      feedback.add_item(title, subtitle, video_id)
+  return feedback
+
 # Converts seconds into a string cotnaing hours, minutes and seconds and returns the string.
 def seconds_to_string(seconds):
   hours = seconds / 3600
@@ -112,10 +108,15 @@ def seconds_to_string(seconds):
     result = "%s%ss" % (result, seconds)
   return result
   
+# Message returned when no results were found
+def no_results():
+  feedback = Feedback()
+  feedback.add_item("No results found", "I'm really sorry that you had to experience this.", arg = "", valid = "no")
+  return feedback
+  
 # Main
 if __name__ == "__main__":
   if len(sys.argv) == 2:
-    top_rated_videos()
-    # search_videos(sys.argv[1])
+    print search_videos(sys.argv[1])
   else:
     print "Syntax is:\n  python youtube.py \"Your query\""

@@ -6,6 +6,17 @@
 	<string>dk.simonbs.Alfred.YouTube</string>
 	<key>connections</key>
 	<dict>
+		<key>0EC1CB64-08CD-492D-837C-0B842EF44AC4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>0FB27DEC-0A3D-48D9-879E-6CC7B13375F2</key>
 		<array>
 			<dict>
@@ -172,6 +183,32 @@ print(search_videos("{query}", 0, "relevance"))</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>channel</string>
+				<key>script</key>
+				<string>from youtube import channel_videos
+
+# Use Googles default max results and order by published date
+print(channel_videos("{query}", 0, "published"))</string>
+				<key>title</key>
+				<string>Show users YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>0EC1CB64-08CD-492D-837C-0B842EF44AC4</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
 				<integer>0</integer>
@@ -202,6 +239,32 @@ print(top_favorited_videos(0))</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
+				<string>youtubemostviewed</string>
+				<key>script</key>
+				<string>from youtube import most_viewed_videos
+
+# Use Googles default max results
+print(most_viewed_videos(0))</string>
+				<key>title</key>
+				<string>Most viewed YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>33BB0E15-73C3-4DFD-9CC9-78C0679A74FB</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
 				<string>youtubemostdiscussed</string>
 				<key>script</key>
 				<string>from youtube import most_discussed_videos
@@ -219,6 +282,21 @@ print(most_discussed_videos(0))</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>792CEB75-D680-48B7-8F46-127C1BEFBC24</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>http://www.youtube.com/watch?v={query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -245,47 +323,6 @@ print(most_responded_videos(0))</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>1D417F60-AFE8-412A-9917-443297D27FBD</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>http://www.youtube.com/watch?v={query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>youtubemostviewed</string>
-				<key>script</key>
-				<string>from youtube import most_viewed_videos
-
-# Use Googles default max results
-print(most_viewed_videos(0))</string>
-				<key>title</key>
-				<string>Most viewed YouTube videos</string>
-				<key>type</key>
-				<integer>3</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>33BB0E15-73C3-4DFD-9CC9-78C0679A74FB</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -368,6 +405,11 @@ print(recently_featured_videos(0))</string>
 	</array>
 	<key>uidata</key>
 	<dict>
+		<key>0EC1CB64-08CD-492D-837C-0B842EF44AC4</key>
+		<dict>
+			<key>ypos</key>
+			<real>1090</real>
+		</dict>
 		<key>0FB27DEC-0A3D-48D9-879E-6CC7B13375F2</key>
 		<dict>
 			<key>ypos</key>

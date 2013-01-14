@@ -21,7 +21,25 @@ The first parameter is the search query. Don't change this. The second parameter
 - published
 - rating
 
+Commands
+=====
+
+Below is a list of the commands that the workflow provides. Parameters in brackets are required.
+
+- **youtube (query)** Searches YouTube for videos matching the query.
+- **youtubetoprated** Shows the top rated videos.
+- **youtubetopfavorited** Shows the most favorited videos.
+- **youtubemostviewed** Shows the most viewed videos.
+- **youtubemostpopular** Shows the most popular videos.
+- **youtubemostrecent** Shows the most recent videos.
+- **youtubemostdiscussed** Shows the most discussed videos.
+- **youtubemostresponded** Shows the videos with most responds.
+- **youtuberecentlyfeatured** Shows videos which have recently been featured.
+- **channel (user name)** Shows videos on a users channel.
+
+Some of the above commands may have long names but notice that they all begin with *youtube* so writing just that will show all the other commands and thereby make them easy to access.
+
 About
 =====
 
-This workflow is developed by [@simonbs](http://twitter.com/simonbs) and parts of the workflow is inspired by Dan Palmers ([@danpalmer](https://twitter.com/danpalmer)) [Reddit Workflow](http://danpalmer.me/blog/articles/2013-01-12-reddit-workflow-for-alfred-20.html).
+This workflow is developed by [@simonbs](http://twitter.com/simonbs)
