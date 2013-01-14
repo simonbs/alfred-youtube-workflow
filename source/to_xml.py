@@ -7,6 +7,7 @@
 
 from xml.etree import ElementTree as ET
 
+# Converts a list to an XML string used by Alfred
 def list_to_xml(the_list):
   xml_items = ET.Element("items")
   for item in the_list:

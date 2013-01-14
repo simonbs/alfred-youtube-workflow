@@ -6,7 +6,95 @@
 	<string>dk.simonbs.Alfred.YouTube</string>
 	<key>connections</key>
 	<dict>
+		<key>0FB27DEC-0A3D-48D9-879E-6CC7B13375F2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>1D417F60-AFE8-412A-9917-443297D27FBD</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>33BB0E15-73C3-4DFD-9CC9-78C0679A74FB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>5B6B5EB3-1EF7-4681-BD4B-168CFDD6AF81</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>5EF3F926-2FC3-4719-BC7B-1A0FAD950394</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>792CEB75-D680-48B7-8F46-127C1BEFBC24</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>986D4B18-2B25-44D9-AB82-59B3C350FA91</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>A7AB0D4C-CB1F-474B-892E-F05437DF4EC9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>CFFB96DD-D4A2-4987-8D06-F32694F4F9DD</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -19,13 +107,39 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Simon Støvring</string>
+	<string>Simon Støvring (@simonbs)</string>
 	<key>description</key>
-	<string>Search for YouTube videos.</string>
+	<string>Search for YouTube videos</string>
 	<key>name</key>
 	<string>YouTube</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtubemostpopular</string>
+				<key>script</key>
+				<string>from youtube import most_popular_videos
+
+# Use Googles default max results
+print(most_popular_videos(0))</string>
+				<key>title</key>
+				<string>Most popular YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>5B6B5EB3-1EF7-4681-BD4B-168CFDD6AF81</string>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -36,10 +150,10 @@
 				<key>keyword</key>
 				<string>youtube</string>
 				<key>script</key>
-				<string>from youtube import search
+				<string>from youtube import search_videos
 
 # Use Googles default max results and order by relevance
-print(search("{query}", 0, "relevance"))</string>
+print(search_videos("{query}", 0, "relevance"))</string>
 				<key>subtext</key>
 				<string>Search YouTube for '{query}'</string>
 				<key>title</key>
@@ -57,6 +171,84 @@ print(search("{query}", 0, "relevance"))</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtubetopfavorited</string>
+				<key>script</key>
+				<string>from youtube import top_favorited_videos
+
+# Use Googles default max results
+print(top_favorited_videos(0))</string>
+				<key>title</key>
+				<string>Top favorited YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>5EF3F926-2FC3-4719-BC7B-1A0FAD950394</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtubemostdiscussed</string>
+				<key>script</key>
+				<string>from youtube import most_discussed_videos
+
+# Use Googles default max results
+print(most_discussed_videos(0))</string>
+				<key>title</key>
+				<string>Most discussed YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>792CEB75-D680-48B7-8F46-127C1BEFBC24</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtubemostresponded</string>
+				<key>script</key>
+				<string>from youtube import most_responded_videos
+
+# Use Googles default max results
+print(most_responded_videos(0))</string>
+				<key>title</key>
+				<string>Most responded YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1D417F60-AFE8-412A-9917-443297D27FBD</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>plusspaces</key>
 				<false/>
 				<key>url</key>
@@ -69,21 +261,165 @@ print(search("{query}", 0, "relevance"))</string>
 			<key>uid</key>
 			<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtubemostviewed</string>
+				<key>script</key>
+				<string>from youtube import most_viewed_videos
+
+# Use Googles default max results
+print(most_viewed_videos(0))</string>
+				<key>title</key>
+				<string>Most viewed YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>33BB0E15-73C3-4DFD-9CC9-78C0679A74FB</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtubemostrecent</string>
+				<key>script</key>
+				<string>from youtube import most_recent_videos
+
+# Use Googles default max results
+print(most_recent_videos(0))</string>
+				<key>title</key>
+				<string>Most recent YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>0FB27DEC-0A3D-48D9-879E-6CC7B13375F2</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtubetoprated</string>
+				<key>script</key>
+				<string>from youtube import top_rated_videos
+
+# Use Googles default max results
+print(top_rated_videos(0))</string>
+				<key>title</key>
+				<string>Top rated YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>CFFB96DD-D4A2-4987-8D06-F32694F4F9DD</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>youtuberecentlyfeatured</string>
+				<key>script</key>
+				<string>from youtube import recently_featured_videos
+
+# Use Googles default max results
+print(recently_featured_videos(0))</string>
+				<key>title</key>
+				<string>Recently featured YouTube videos</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A7AB0D4C-CB1F-474B-892E-F05437DF4EC9</string>
+		</dict>
 	</array>
 	<key>uidata</key>
 	<dict>
+		<key>0FB27DEC-0A3D-48D9-879E-6CC7B13375F2</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
+		<key>1D417F60-AFE8-412A-9917-443297D27FBD</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
+		</dict>
 		<key>2BB6EB13-3582-43AD-8330-D52EE317087D</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>33BB0E15-73C3-4DFD-9CC9-78C0679A74FB</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>5B6B5EB3-1EF7-4681-BD4B-168CFDD6AF81</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
+		</dict>
+		<key>5EF3F926-2FC3-4719-BC7B-1A0FAD950394</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>792CEB75-D680-48B7-8F46-127C1BEFBC24</key>
+		<dict>
+			<key>ypos</key>
+			<real>730</real>
 		</dict>
 		<key>986D4B18-2B25-44D9-AB82-59B3C350FA91</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>A7AB0D4C-CB1F-474B-892E-F05437DF4EC9</key>
+		<dict>
+			<key>ypos</key>
+			<real>970</real>
+		</dict>
+		<key>CFFB96DD-D4A2-4987-8D06-F32694F4F9DD</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>http://twitter.com/simonbs</string>
+	<string>http://simonbs.dk/</string>
 </dict>
 </plist>
