@@ -19,6 +19,7 @@ import urllib
 import json
 import locale
 from Feedback import Feedback
+from xml.dom import minidom
 
 # Returns the top rated videos on YouTube.
 def top_rated_videos(max_results = 0):
@@ -56,13 +57,30 @@ def recently_featured_videos(max_results = 0):
 def channel_videos(username, max_results = 0, orderby = "published"):
   url = "https://gdata.youtube.com/feeds/api/users/%s/uploads?v=2&alt=jsonc&orderby=%s" % (username, orderby)
   return results(url, max_results)
-
+  
 # Searches YouTube for results matching the terms and returns the results.
 # Supported values for orderby are
 # - relevance, viewCount, published, rating
 def search_videos(terms, max_results = 0, orderby = "relevance"):
   url = "https://gdata.youtube.com/feeds/api/videos?v=2&alt=jsonc&q=%s&orderby=%s" % (terms, orderby)
   return results(url, max_results)
+  
+# Searches for channels.
+def search_channels(query, max_results = 0):
+  feedback = Feedback()
+  url = "https://gdata.youtube.com/feeds/api/channels?q=%s&v=2" % (query)
+  url = max_results_url(url, max_results)
+  content = content_of_url(url)
+  dom = minidom.parseString(content)
+  entries = dom.getElementsByTagName("entry")
+  for entry in entries:
+    title = entry.getElementsByTagName("title")[0].firstChild.nodeValue
+    summary = entry.getElementsByTagName("summary")[0].firstChild
+    name = entry.getElementsByTagName("author")[0].firstChild.firstChild.nodeValue
+    if summary is not None:
+      summary = summary.data
+    feedback.add_item(title, summary, name)
+  return feedback
 
 # Returns XML parsed results for the specified URL and maximum amount of results.
 def results(url, max_results):
@@ -83,12 +101,17 @@ def max_results_url(url, max_results):
   
 # Loads the items at the specified URL.
 def items_at_url(url):
+  content = content_of_url(url)
+  json_response = json.loads(content)
+  if "data" in json_response and "items" in json_response["data"]:
+    return json_response["data"]["items"]
+  return None
+  
+# Loads the content of a URL.
+def content_of_url(url):
   conn = urllib.urlopen(url)
   response = conn.read()
-  json_response = json.loads(response)
-  if "data" in json_response and "items" in json_response["data"]:
-    return json.loads(response)["data"]["items"]
-  return None
+  return response
   
 # Parses a list results into XML for Alfred.
 def xml_results(items):
@@ -142,6 +165,6 @@ config()
 # Main
 if __name__ == "__main__":
   if len(sys.argv) == 2:
-    print search_videos(sys.argv[1])
+    print search_videos(sys.argv[1], 10)
   else:
     print "Syntax is:\n  python youtube.py \"Your query\""
