@@ -36,15 +36,10 @@ class Feedback():
             autcomplete(str): the text to be inserted if an invalid item is selected. This is only used if 'valid' is 'no'
             icon(str):        filename of icon that Alfred will display
         """
-        item = et.SubElement(self.feedback, 'item',
-            uid=str(len(self.feedback)), arg=arg)
+        item = et.SubElement(self.feedback, 'item', uid=str(len(self.feedback)), arg=arg, valid=valid, autocomplete=autocomplete)
         _title = et.SubElement(item, 'title')
         _title.text = title
         _sub = et.SubElement(item, 'subtitle')
         _sub.text = subtitle
-        _valid = et.SubElement(item, 'valid')
-        _valid.text = valid
-        _autocomplete = et.SubElement(item, 'autocomplete')
-        _autocomplete.text = autocomplete
         _icon = et.SubElement(item, 'icon')
         _icon.text = icon

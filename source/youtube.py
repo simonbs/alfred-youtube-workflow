@@ -79,7 +79,7 @@ def search_channels(query, max_results = 0):
     name = entry.getElementsByTagName("author")[0].firstChild.firstChild.nodeValue
     if summary is not None:
       summary = summary.data
-    feedback.add_item(title, summary, name)
+    feedback.add_item(title, summary, ("http://www.youtube.com/user/%s" % name))
   return feedback
 
 # Returns XML parsed results for the specified URL and maximum amount of results.
@@ -127,7 +127,7 @@ def xml_results(items):
         if view_count is not 1:
           view_word = "views"
         subtitle = "%s [%s %s]" % (subtitle, locale.format("%d", view_count, grouping = True), view_word)
-      feedback.add_item(title, subtitle, video_id)
+      feedback.add_item(title, subtitle, ("http://www.youtube.com/watch?v=%s" % video_id))
   return feedback
 
 # Converts seconds into a string cotnaing hours, minutes and seconds and returns the string.
@@ -161,10 +161,3 @@ def config():
 
 # Make configurations
 config()
-  
-# Main
-if __name__ == "__main__":
-  if len(sys.argv) == 2:
-    print search_videos(sys.argv[1], 10)
-  else:
-    print "Syntax is:\n  python youtube.py \"Your query\""
