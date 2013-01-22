@@ -41,48 +41,6 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>yt</string>
-				<key>script</key>
-				<string>from youtube_helper import youtube_helper
-
-print(youtube_helper("{query}"))</string>
-				<key>subtext</key>
-				<string>Demo</string>
-				<key>title</key>
-				<string>YouTube</string>
-				<key>type</key>
-				<integer>3</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>BE57A1DA-0301-42B6-B748-A4CD8C813547</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
 				<integer>0</integer>
@@ -106,6 +64,46 @@ print(search_videos("{query}", 0, "relevance"))</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>986D4B18-2B25-44D9-AB82-59B3C350FA91</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>2BB6EB13-3582-43AD-8330-D52EE317087D</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>yt</string>
+				<key>script</key>
+				<string>from youtube_helper import youtube_helper
+
+print(youtube_helper("{query}"))</string>
+				<key>title</key>
+				<string>YouTube</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BE57A1DA-0301-42B6-B748-A4CD8C813547</string>
 		</dict>
 	</array>
 	<key>uidata</key>
