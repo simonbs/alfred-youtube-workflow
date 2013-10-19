@@ -5,7 +5,7 @@
 
 # Whether or not to show the view count in subtitle
 # Note that there are a few videos for which the view count is not available
-SUBTITLE_SHOWS_VIEW_COUNT = True
+SUBTITLE_SHOWS_VIEW_COUNT = False
 
 # Locale
 LOCALE = "da_DK"
