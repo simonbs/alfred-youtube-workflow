@@ -5,7 +5,7 @@
 
 # Whether or not to show the view count in subtitle
 # Note that there are a few videos for which the view count is not available
-SUBTITLE_SHOWS_VIEW_COUNT = False
+SUBTITLE_SHOWS_VIEW_COUNT = True
 
 # Locale
 LOCALE = "da_DK"
@@ -74,14 +74,17 @@ def search_channels(query, max_results = 0):
   content = content_of_url(url)
   dom = minidom.parseString(content)
   entries = dom.getElementsByTagName("entry")
-  for entry in entries:
-    title = entry.getElementsByTagName("title")[0].firstChild.nodeValue
-    summary = entry.getElementsByTagName("summary")[0].firstChild
-    name = entry.getElementsByTagName("author")[0].firstChild.firstChild.nodeValue
-    if summary is not None:
-      summary = summary.data
-    feedback.add_item(title, summary, ("http://www.youtube.com/user/%s" % name))
-  return feedback
+  if len(entries) == 0:
+    return no_results()
+  else:
+    for entry in entries:
+      title = entry.getElementsByTagName("title")[0].firstChild.nodeValue
+      summary = entry.getElementsByTagName("summary")[0].firstChild
+      name = entry.getElementsByTagName("author")[0].firstChild.firstChild.nodeValue
+      if summary is not None:
+        summary = summary.data
+      feedback.add_item(title, summary, ("http://www.youtube.com/user/%s" % name))
+    return feedback
 
 # Returns XML parsed results for the specified URL and maximum amount of results.
 def results(url, max_results):
