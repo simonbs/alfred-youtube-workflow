@@ -4,7 +4,8 @@
 ##
 
 # Whether or not to show the view count in subtitle
-SUBTITLE_SHOWS_VIEW_COUNT = False
+# Note that there are a few videos for which the view count is not available
+SUBTITLE_SHOWS_VIEW_COUNT = True
 
 # Locale
 LOCALE = "da_DK"
@@ -121,7 +122,7 @@ def xml_results(items):
     if video_id is not None:
       title = item["title"]
       subtitle = "by %s (%s)" % (item["uploader"], seconds_to_string(item["duration"]))
-      if SUBTITLE_SHOWS_VIEW_COUNT is True:
+      if SUBTITLE_SHOWS_VIEW_COUNT is True and "viewCount" in item:
         view_count = item["viewCount"]
         view_word = "view"
         if view_count is not 1:
