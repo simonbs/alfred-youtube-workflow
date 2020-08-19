@@ -1,6 +1,8 @@
 YouTube Workflow for Alfred 2.0
 ======
 
+⚠️ YouTube's API have changed since I first developed the workflow and the workflow have not been modified to use the updated API.
+
 A workflow for Alfred 2.0 which lets the user search for YouTube videos and have them returned to Alfred.
 
 ![](http://f.cl.ly/items/0c1m1O1o202S2N0f3A0q/Sk%C3%A6rmbillede%202013-01-13%20kl.%2018.34.26.png)
